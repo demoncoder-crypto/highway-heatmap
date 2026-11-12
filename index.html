@@ -6065,6 +6065,37 @@ long/index.js:
   .seg button{border:0;border-radius:0;border-right:1px solid var(--rule)} .seg button:last-child{border-right:0}
   .seg button.on{background:var(--ink);color:#fff}
   svg text{font-family:inherit}
+  .topnav{display:flex;gap:8px;padding:0 20px 8px}
+  .topnav a{font-size:13px;color:var(--accent);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:4px 12px;background:#fff}
+  #invest{padding:0 20px 24px}
+  #invest h2{font-size:15px;margin:0 0 4px} #invest h3{font-size:13px;margin:12px 0 4px}
+  .inv-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 6px}
+  .inv-head select{max-width:440px}
+  .inv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-bottom:16px}
+  @media (max-width:1000px){.inv-grid{grid-template-columns:1fr}}
+  #invest .card{margin-bottom:16px}
+  .inv-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}
+  .inv-form label{display:flex;flex-direction:column;gap:2px;font-size:12px;color:var(--ink2)}
+  .inv-form label span{color:var(--ink);font-weight:600}
+  .inv-form small{font-size:11px;color:var(--muted)}
+  .inv-form input,.inv-form select{width:100%}
+  .ev{display:inline-block;font-size:10px;line-height:15px;padding:0 5px;border-radius:4px;border:1px solid;vertical-align:1px;font-weight:600}
+  .ev-S{color:#0a7a0a;border-color:#9fd49f;background:#f1faf1} .ev-A{color:#8a5a00;border-color:#f0c36b;background:#fff7e6} .ev-J{color:#5b4bc4;border-color:#c5bdf2;background:#f5f3ff}
+  .facts{margin:4px 0;padding-left:18px} .facts li{margin:3px 0}
+  .srcl{font-size:11.5px} .srcl a{color:var(--s550)}
+  .lvl{font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px} .lvl-High{background:#fdecec;color:#b3261e} .lvl-Medium{background:#fff4e0;color:#8a5a00} .lvl-Low{background:#eef6ee;color:#0a7a0a}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:8px 0 12px}
+  .kpi{border:1px solid var(--rule);border-radius:8px;padding:8px 10px;background:#fff} .kv{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums} .kk{font-size:11.5px;color:var(--ink2)}
+  table.num td{text-align:right;font-variant-numeric:tabular-nums} table.num td:first-child,table.num td:nth-child(2):not(:only-child){text-align:left}
+  td.neg{color:#b3261e} tr.tot td{font-weight:700;border-top:2px solid var(--rule)}
+  .weights{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 10px;font-size:12px;color:var(--ink2)} .weights input{width:60px}
+  .hold{font-size:12px;color:var(--ink2);display:inline-flex;gap:6px;align-items:center;margin-bottom:6px} .hold input{width:60px}
+  .live-pill{display:inline-block;background:#f1f6fd;border:1px solid #b7d3f6;border-radius:6px;padding:4px 8px;font-size:12.5px}
+  #invest th,#invest td{white-space:normal;vertical-align:top}
+  #invest .scroll{max-height:none;overflow-x:auto}
+  #invChart{max-width:920px}
+  #invest .card{overflow:hidden}
+  details{margin-top:8px} summary{cursor:pointer;color:var(--accent);font-size:13px}
 </style>
 </head>
 <body>
@@ -6072,7 +6103,8 @@ long/index.js:
   <h1>Highway congestion heat map: Punjab · Himachal Pradesh · Haryana</h1>
   <div class="sub" id="metaLine"></div>
 </header>
-<div class="banner" id="synthBanner" style="display:none"><b>SYNTHETIC DATA.</b> The history views (busy-hours grid, hourly profiles, comparison, events) come from the built-in generator, not from measurement. Only <b>Live now</b> uses real Google traffic data.</div>
+<nav class="topnav"><a href="#mapTop">Traffic map</a><a href="#invest">Investment analysis: month-by-month model, property, risks, ranking, report</a></nav>
+<div id="mapTop"></div><div class="banner" id="synthBanner" style="display:none"><b>SYNTHETIC DATA.</b> The history views (busy-hours grid, hourly profiles, comparison, events) come from the built-in generator, not from measurement. Only <b>Live now</b> uses real Google traffic data.</div>
 
 <div class="controls">
   <label>Day <select id="day"></select></label>
@@ -6133,6 +6165,7 @@ long/index.js:
     <div class="scroll"><table id="sp"></table></div>
   </section>
 </main>
+<section id="invest"><h2 style="font-size:17px;margin:8px 0 2px">Investment analysis</h2><p class="note">Loading…</p></section>
 <div id="tip"></div>
 
 <script>
@@ -6435,7 +6468,15 @@ async function fetchLive(){
   }
   drawLive();
 }
+window.__liveCorridor = cid => {
+  if (!LIVE.at) return null;
+  const segs = DATA.segments.filter(s => s.corridor_id === cid); const ok = segs.map(s => LIVE.bySeg[s.segment_id]).filter(r => r && !r.err);
+  if (!ok.length) return null;
+  const dur = ok.reduce((a,r)=>a+r.dur,0), stat = ok.reduce((a,r)=>a+r.stat,0);
+  return {tti: dur/stat, delay: (dur-stat)/60/2, at: LIVE.at.toLocaleTimeString("en-IN",{hour:"2-digit",minute:"2-digit"})};
+};
 function drawLive(){
+  if (window.__investRender) try { window.__investRender(); } catch(e) {}
   const card = document.getElementById("liveCard"); if (!LIVE.at){ card.style.display="none"; return; }
   card.style.display = "block";
   const rows = [];
@@ -6480,6 +6521,430 @@ function refresh(){
   drawGrid(); drawPick(); drawProfile(); drawTable(); drawEvents(); drawSpill();
 }
 refresh();
+</script>
+<script>// Investment data for the highway tool. Every value carries an evidence label:
+//   S = Sourced (published figure, link in SRC)   A = Assumption (planning default, edit it)
+//   J = Analyst judgment (score, edit it)
+// As of 2026-11-12. Replace A values with site counts before committing capital.
+window.INVEST = {
+  asOf: "2026-11-12",
+  SRC: {
+    shambhu: {t: "Tribune: Shambhu toll closure (40,000-50,000 vehicles/day)", u: "https://www.tribuneindia.com/news/haryana/shambhu-toll-closure-drains-220-cr-worsens-traffic-woes/amp"},
+    shambhuOpen: {t: "Tribune live blog: Shambhu reopened 20 Mar 2025", u: "https://www.tribuneindia.com/liveblog/punjab/crackdown-on-farmers-live-farmer-bodies-announce-nationwide-protest-outside-dc-offices"},
+    murthal: {t: "Indian Retailer: Amrik Sukhdev 8,000-10,000 customers/day, 12,000-13,000 weekends (2015)", u: "https://www.indianretailer.com/restaurant/article/we-serve-8-000-10-000-customers-daily-amrik-singh.6887"},
+    murthalRev: {t: "Tribune: Murthal dhaba ~Rs 100 crore a year, 5,000-10,000 visitors/day (reported)", u: "https://www.tribuneindia.com/news/delhi/no-ads-just-paranthas-this-haryana-dhaba-serves-10000-daily-earns-rs-100-crore-annually"},
+    nh44: {t: "Wikipedia: NH44 Delhi-Panipat 8-lane elevated section", u: "https://en.wikipedia.com/wiki/NH_44"},
+    dakOpen: {t: "GKToday: DAK Expressway Haryana 157.92 km + Jalandhar 30.9 km opened 17 Jul 2026", u: "https://www.gktoday.in/delhi-amritsar-katra-expressway-stretch-inaugurated/"},
+    dakDone: {t: "Daily Excelsior: DAK completion targeted Mar 2027", u: "https://www.dailyexcelsior.com/?p=2165091"},
+    dakLand: {t: "ThePrint: Amritsar spur 30 km tender cancelled over land", u: "https://theprint.in/statedraft/delhi-katra-expressway-latest-nhai-project-to-face-land-acquisition-hurdle-in-punjab-theres-15-more/2517200"},
+    wsaTender: {t: "NHAI tender: wayside amenities on DAK Expressway (lease)", u: "https://www.publicservicesmap.in/tenders/developing-operating-and-maintaining-of-wayside--et-2026-nhai-262022-1"},
+    wsaPolicy: {t: "Construction World: NHAI wayside amenities, leases up to 30 years", u: "https://www.constructionworld.in/transport-infrastructure/highways-and-roads-infrastructure/nhai-to-develop-600-wayside-amenities-on-ppp/26238"},
+    transHr: {t: "Housing.com: Trans-Haryana NH152D, 227 km, open 1 Aug 2022, 6 wayside amenities", u: "https://housing.com/news/trans-haryana-expressway/"},
+    parwanooCount: {t: "Tribune: 17,381 and 19,596 vehicles entered HP at Parwanoo on a long weekend", u: "https://www.tribuneindia.com/news/himachal/long-weekend-leads-to-traffic-chaos-on-parwanoo-shimla-nh"},
+    sanwara: {t: "Tribune: Sanwara toll queues stretch for km at weekends", u: "https://www.tribuneindia.com/news/himachal/toll-trouble-hoteliers-demand-relief-on-landslide-hit-highway"},
+    nh5court: {t: "ANI/LatestLY: HP High Court on NH5 delays; 2.3 km still restricted", u: "https://www.latestly.com/agency-news/india-news-hp-high-court-allows-conditional-resumption-of-toll-collection-at-sanwara-from-november-12-orders-urgent-repairs-on-nh-5-given-10-days-for-compliance-7194781.html"},
+    kiratOpen: {t: "ETV Bharat: Kiratpur-Nerchowk four-lane opened 6 Aug 2023", u: "https://etvbharat.com/english/state/himachal-pradesh/kiratpur-nerchowk-four-lane-thrown-open-in-bilaspur/na20230806181736395395310"},
+    kiratBypass: {t: "The Statesman: new road bypasses Swarghat, Bilaspur, Barmana, Sundernagar", u: "https://www.thestatesman.com/travel/delhi-manali-journey-to-reduce-by-4-hrs-as-kiratpur-ner-chowk-new-road-gets-functional-1503182128.html"},
+    kullu: {t: "ETV Bharat: Kullu 35.38 lakh tourists in 2024; HP 1.80 crore", u: "https://www.etvbharat.com/en/state/kullu-district-remains-prime-choice-of-tourists-visiting-himachal-pradesh-enn25110402778"},
+    hpDispute: {t: "Newswav: HP 2025 figure of 3.10 crore questioned as inflated", u: "https://newswav.com/article/kangra-tops-in-foreign-tourist-arrivals-inflated-domestic-figures-under-clo-A2605_Kx59F0"},
+    monsoon25: {t: "Outlook Business: 2025 monsoon, occupancy 10-20%, Rs 4,861 crore loss", u: "https://www.outlookbusiness.com/news/excessive-rains-becoming-perpetual-curse-for-hp-tourism-industry-room-occupancy-down-to-20"},
+    occJune: {t: "PTC News: June hotel occupancy 80-90% (Shimla, Manali)", u: "https://www.ptcnews.tv/nation/himachal-pradesh-heavy-tourist-rush-in-shimla-manali-kinnaur-to-beat-the-heat-hotel-occupancy-reaches-90-percent-4391733"},
+    occDec: {t: "Tribune: 80-90% occupancy ahead of New Year", u: "https://www.tribuneindia.com/news/himachal/hotel-occupancy-hits-80-to-90-per-cent-in-himachal-pradesh-ahead-of-new-year/"},
+    occDecEarly: {t: "IANS: under 30% occupancy in early December, 90-98% at year end", u: "https://ianslive.in/heading-to-himachalget-hotel-booking-in-advance-or-spend-night-in-chilly-cold--20231225115105"},
+    occAugSep: {t: "Discover Kullu Manali: Aug-Sep occupancy ~15%", u: "https://discoverkullumanali.in/tag/discover-kullu-manali/"},
+    occMay: {t: "NewKerala: Manali 70-80% occupancy in early May", u: "https://www.newkerala.com/news/a/himachal-pradesh-tourism-gains-momentum-manali-hotel-occupancy-992.htm"},
+    sec118: {t: "Tribune: Section 118 bars outsiders buying HP land without permission", u: "https://www.tribuneindia.com/news/himachal/government-mulls-making-sec-118-less-cumbersome-to-facilitate-land-purchase-by-non-himachalis/amp"},
+    himuda: {t: "Tribune: HIMUDA flats/land purchasable without permission", u: "https://www.tribuneindia.com/news/land-laws-in-hp-are-restrictive-for-outsiders-but-not-inhibitive-25084"},
+    zirAir: {t: "Square Yards: Zirakpur Airport Road Rs 6,000 to 8,150/sq ft (Jun 2025-Mar 2026)", u: "https://www.squareyards.com/property-rates/international-airport-road-zirakpur"},
+    zirCity: {t: "Square Yards: Zirakpur city Rs 5,236 to 5,957/sq ft; yield ~3.9%", u: "https://www.squareyards.com/property-rates/zirakpur-north"},
+    zirYield: {t: "Square Yards: Zirakpur rental yield 3.89%", u: "https://www.squareyards.com/property-rates-in-zirakpur"},
+    kharar: {t: "Square Yards: Kharar-Banur Road Rs 5,250 to 5,400/sq ft", u: "https://www.squareyards.com/property-rates/kharar-banur-road-chandigarh"},
+    sonipat: {t: "Business Today/ANAROCK: Sonipat Rs 3,500-6,000/sq ft", u: "https://www.businesstoday.in/personal-finance/real-estate/story/sonipat-vs-gurugram-where-should-real-estate-investors-put-their-money-537904-2026-06-21"},
+    kundliLand: {t: "Tribune: Kundli land +190% 2020-2025, ~Rs 61,216/sq yd", u: "https://www.tribuneindia.com/news/business/beyond-the-borders-how-sonipats-metro-and-mega-projects-are-redefining-ncr-real-estate"},
+    rrts: {t: "Outlook Money: Delhi-Panipat-Karnal Namo Bharat approved, Rs 33,051 crore", u: "https://www.outlookmoney.com/amp/story/invest/panipat-emerges-as-haryanas-next-real-estate-growth-hub"},
+    panipat: {t: "Square Yards: Panipat North ~Rs 6,500/sq ft, yield 3.9%", u: "https://www.squareyards.com/sector-40-in-panipat-overview-82311"},
+    dwarka: {t: "ANAROCK via The Realty Today: Dwarka Expressway Rs 6,032 (2021) to 14,180/sq ft (H1 2026)", u: "https://therealtytoday.com/news/market-insights/dwarka-expressway-sees-135-home-price-growth-as-premium-housing-demand-strengthens"},
+    spr: {t: "NBM&CW: SPR ~Rs 16,249/sq ft, +18.4% YoY", u: "https://www.nbmcw.com/news/real-estate/southern-peripheral-road-and-sohna-record-up-to-165-jump-in-property-prices.html"},
+    ludhiana: {t: "Square Yards: Ludhiana Rs 6,300 to 7,150/sq ft; yield 2.85%", u: "https://www.squareyards.com/property-rates-in-ludhiana"},
+    amritsar: {t: "Housing.com: Amritsar avg Rs 5,859/sq ft, -7.59% YoY", u: "https://housing.com/amritsar-punjab-overview-P28bugkqia987y1jk"},
+    jalandhar: {t: "Housing.com: Jalandhar avg Rs 3,943/sq ft, -3.23% YoY", u: "https://housing.com/price-trends/property-rates-for-buy-in-jalandhar_punjab-P5esj4yznwexf6dd7"},
+    newchd: {t: "RealtyHunting: New Chandigarh flats ~Rs 6,850-10,650/sq ft", u: "https://realtyhunting.com/chandigarh-real-estate-guide"}
+  },
+
+  // Monthly demand index (mean = 1.00). A: shape set from the sourced occupancy points listed in `anchors`.
+  seasonality: {
+    hill:  {label: "Hill tourism (HP routes)", ev: "A", idx: [0.99,0.77,0.94,1.10,1.38,1.54,0.66,0.50,0.66,1.10,0.94,1.43],
+            anchors: [["May","70-80% hotel occupancy early May","occMay"],["Jun","80-90% occupancy","occJune"],["Aug","~15% occupancy (Aug-Sep)","occAugSep"],["Jul","10-20% in the 2025 monsoon","monsoon25"],["Dec","under 30% early Dec, 90-98% at year end","occDecEarly"]]},
+    plain: {label: "Plains trunk (NH44, NH7, NH9)", ev: "A", idx: [1.00,1.00,1.00,0.95,0.95,1.05,0.90,0.90,0.95,1.10,1.10,1.10], anchors: []},
+    urban: {label: "Urban/NCR commuter", ev: "A", idx: [1.00,1.00,1.02,1.00,0.95,0.92,0.95,0.97,1.02,1.05,1.07,1.05], anchors: []}
+  },
+
+  corridors: [
+    {id: "NH44_DEL_ASR", name: "NH44 Delhi - Panipat - Ambala - Ludhiana - Jalandhar - Amritsar", states: "HR, PB", season: "plain", onMap: true,
+     cap: {v: 5, ev: "A", note: "Crowded: large incumbents at Murthal, Karnal, Rajpura"},
+     aadt: {v: 45000, ev: "S", note: "Shambhu, before the 2024 closure: 40,000-50,000/day", src: "shambhu"},
+     diversion: {v: 20, ev: "A", note: "Share of long-distance traffic expected to move to the DAK Expressway"},
+     facts: [
+       ["S", "Delhi-Panipat is an 8-lane elevated road with 4 service lanes.", "nh44"],
+       ["S", "Largest Murthal dhaba reported 8,000-10,000 customers a day, 12,000-13,000 at weekends (2015).", "murthal"],
+       ["S", "Same outlet reported at about Rs 100 crore revenue a year.", "murthalRev"],
+       ["S", "The DAK Expressway is built to take pressure off NH44.", "dakOpen"]],
+     risks: [
+       ["High", "Blockade: Shambhu was closed 10 Feb 2024 to 20 Mar 2025 (404 days); traffic diverted to Zirakpur, Lalru and village roads.", "shambhu"],
+       ["High", "Diversion: long-distance cars and trucks shift to the DAK Expressway as it opens (Haryana section Jul 2026).", "dakOpen"],
+       ["Medium", "Saturated clusters: Murthal, Karnal and Rajpura strips already have large incumbents.", "murthal"]],
+     eatery: "Proven demand but crowded and exposed to diversion. Buying a running outlet needs a diversion haircut and a blockade reserve.",
+     scores: {demand: 5, durability: 2, seasonStable: 4, legalEase: 4, entryCost: 2}},
+
+    {id: "DAK_EXPWY", name: "Delhi - Amritsar - Katra Expressway (NE-5)", states: "HR, PB", season: "plain", onMap: false,
+     cap: {v: 20, ev: "A", note: "Few licensed sites per stretch on an access-controlled road"},
+     aadt: {v: 10000, ev: "A", note: "No published counts yet; set from first toll data"},
+     diversion: {v: 0, ev: "A", note: "Receives diverted traffic"},
+     facts: [
+       ["S", "157.92 km in Haryana and 30.9 km near Jalandhar opened on 17 July 2026.", "dakOpen"],
+       ["S", "Full completion targeted for March 2027.", "dakDone"],
+       ["S", "Amritsar spur delayed: a 30 km tender cancelled for lack of land.", "dakLand"],
+       ["S", "Access-controlled: food only at NHAI wayside-amenity sites leased by tender.", "wsaTender"],
+       ["S", "NHAI wayside-amenity leases run up to 30 years.", "wsaPolicy"]],
+     risks: [
+       ["High", "Traffic is unproven: no counts published. Bid only after 3-6 months of toll data.", "dakOpen"],
+       ["Medium", "Punjab land acquisition delays could leave parts of the road unconnected.", "dakLand"],
+       ["Medium", "Tender competition: lease bids are won on rental offered to NHAI.", "wsaTender"]],
+     eatery: "The only legal roadside food sites on the new road are NHAI wayside-amenity leases. Watch NHLML tenders for the Haryana and Punjab packages.",
+     scores: {demand: 3, durability: 5, seasonStable: 4, legalEase: 3, entryCost: 3}},
+
+    {id: "TRANS_HR", name: "Trans-Haryana NH152D (Ambala - Narnaul)", states: "HR", season: "plain", onMap: false,
+     cap: {v: 20, ev: "A", note: "Six licensed sites over 227 km"},
+     aadt: {v: 8000, ev: "A", note: "No public counts found"},
+     diversion: {v: 0, ev: "A", note: ""},
+     facts: [["S", "227 km, 6-lane, open since 1 August 2022, with six wayside-amenity locations.", "transHr"]],
+     risks: [["Medium", "Low and unmeasured traffic; amenities already allotted at six sites.", "transHr"]],
+     eatery: "Entry only through NHAI wayside-amenity leases. Low priority until counts are available.",
+     scores: {demand: 2, durability: 4, seasonStable: 4, legalEase: 3, entryCost: 3}},
+
+    {id: "NH5_CHD_SML", name: "NH5 Zirakpur - Parwanoo - Solan - Shimla", states: "PB, HR, HP", season: "hill", onMap: true,
+     cap: {v: 12, ev: "A", note: "Many outlets on the Pinjore-Parwanoo approach"},
+     aadt: {v: 15000, ev: "A", note: "Set below the sourced long-weekend counts of 17,381 and 19,596 entering HP", src: "parwanooCount"},
+     diversion: {v: 0, ev: "A", note: ""},
+     facts: [
+       ["S", "17,381 and 19,596 vehicles entered HP at Parwanoo on two long-weekend days.", "parwanooCount"],
+       ["S", "Queues at the Sanwara toll stretch for kilometres at weekends.", "sanwara"],
+       ["S", "Parwanoo-Solan four-laning ran six years late; about 2.3 km still restricted.", "nh5court"]],
+     risks: [
+       ["High", "Monsoon: 2025 hotel occupancy fell to 10-20%; Rs 4,861 crore state losses.", "monsoon25"],
+       ["Medium", "HP land rules: outsiders need state permission to buy land.", "sec118"],
+       ["Medium", "Strong seasonality: August demand is about a third of June.", "occAugSep"]],
+     eatery: "Captive demand from slow and stopped traffic. Best on the Pinjore-Parwanoo approach (Haryana side), outside HP land rules.",
+     scores: {demand: 4, durability: 3, seasonStable: 2, legalEase: 3, entryCost: 3}},
+
+    {id: "CHD_MANALI", name: "Kiratpur - Nerchowk - Mandi - Kullu - Manali (NH154/NH21)", states: "PB, HP", season: "hill", onMap: true,
+     cap: {v: 12, ev: "A", note: "Outlets rebuilding along the new alignment"},
+     aadt: {v: 12000, ev: "A", note: "No public counts found"},
+     diversion: {v: 0, ev: "A", note: ""},
+     facts: [
+       ["S", "Kiratpur-Nerchowk four-lane opened 6 August 2023.", "kiratOpen"],
+       ["S", "It bypasses Swarghat, Bilaspur, Barmana and Sundernagar.", "kiratBypass"],
+       ["S", "Kullu had 35.38 lakh tourists in 2024, the most of any HP district.", "kullu"],
+       ["S", "HP's 2025 total of 3.10 crore is disputed as inflated; use with care.", "hpDispute"]],
+     risks: [
+       ["High", "Monsoon closures of the Chandigarh-Manali highway (2025).", "monsoon25"],
+       ["High", "Old-route outlets lost through traffic after the bypass.", "kiratBypass"],
+       ["Medium", "HP land rules: lease rather than buy.", "sec118"]],
+     eatery: "Sites on the new alignment, near toll plazas and tunnel exits, gain; old-route sites lose. Lease from local owners.",
+     scores: {demand: 4, durability: 3, seasonStable: 2, legalEase: 2, entryCost: 3}},
+
+    {id: "NH5_CHD_LDH", name: "NH5 Kharar - Ludhiana", states: "PB", season: "plain", onMap: true,
+     cap: {v: 10, ev: "A", note: "Typical competition"},
+     aadt: {v: 20000, ev: "A", note: "No public counts found"}, diversion: {v: 10, ev: "A", note: "Some Delhi-bound traffic moves to DAK"},
+     facts: [], risks: [["Medium", "Used as a diversion route during NH44 blockades; demand swings both ways.", "shambhu"]],
+     eatery: "Secondary trunk route; no sourced demand data.", scores: {demand: 3, durability: 3, seasonStable: 4, legalEase: 4, entryCost: 4}},
+
+    {id: "NH7_ZRK_BTI", name: "NH7 Zirakpur - Patiala - Sangrur - Bathinda", states: "PB", season: "plain", onMap: true,
+     cap: {v: 10, ev: "A", note: "Typical competition"},
+     aadt: {v: 15000, ev: "A", note: "No public counts found"}, diversion: {v: 0, ev: "A", note: ""},
+     facts: [], risks: [["Medium", "Khanauri-type blockades on Punjab-Haryana links (2024-25).", "shambhuOpen"]],
+     eatery: "No sourced demand data.", scores: {demand: 3, durability: 3, seasonStable: 4, legalEase: 4, entryCost: 4}},
+
+    {id: "NH9_DEL_SRS", name: "NH9 Delhi - Rohtak - Hisar - Sirsa", states: "HR", season: "plain", onMap: true,
+     cap: {v: 10, ev: "A", note: "Typical competition"},
+     aadt: {v: 20000, ev: "A", note: "No public counts found"}, diversion: {v: 0, ev: "A", note: ""},
+     facts: [], risks: [], eatery: "No sourced demand data.", scores: {demand: 3, durability: 3, seasonStable: 4, legalEase: 4, entryCost: 4}},
+
+    {id: "NH48_GGN_REW", name: "NH48 Gurugram - Manesar - Dharuhera", states: "HR", season: "urban", onMap: true,
+     cap: {v: 3, ev: "A", note: "Dense urban competition"},
+     aadt: {v: 60000, ev: "A", note: "No public counts found"}, diversion: {v: 0, ev: "A", note: ""},
+     facts: [["S", "Dwarka Expressway prices rose from Rs 6,032/sq ft (2021) to Rs 14,180 (H1 2026).", "dwarka"]],
+     risks: [["Medium", "Prices already high; future gains need new catalysts.", "dwarka"]],
+     eatery: "Urban restaurant economics rather than highway stops.", scores: {demand: 4, durability: 4, seasonStable: 5, legalEase: 4, entryCost: 1}},
+
+    {id: "PTK_DHM", name: "Pathankot - Kangra - Dharamshala", states: "PB, HP", season: "hill", onMap: true,
+     cap: {v: 12, ev: "A", note: "Typical competition"},
+     aadt: {v: 8000, ev: "A", note: "No public counts found"}, diversion: {v: 0, ev: "A", note: ""},
+     facts: [], risks: [["Medium", "HP land rules apply.", "sec118"]],
+     eatery: "Smaller, steadier pilgrim and tourist flow.", scores: {demand: 2, durability: 4, seasonStable: 3, legalEase: 2, entryCost: 4}}
+  ],
+
+  // Property micro-markets near corridors. price = latest Rs/sq ft (asking), from/to = trend endpoints.
+  property: [
+    {m: "Zirakpur - Airport Road", c: "NH5_CHD_SML", price: 8150, from: 6000, period: "Jun 2025 - Mar 2026", months: 9, yld: 3.9, src: "zirAir", note: "Tricity growth pocket"},
+    {m: "Zirakpur (city average)", c: "NH5_CHD_SML", price: 5957, from: 5236, period: "Jun 2025 - Mar 2026", months: 9, yld: 3.9, src: "zirCity", note: ""},
+    {m: "Kharar - Banur Road", c: "NH5_CHD_LDH", price: 5400, from: 5250, period: "Jun - Dec 2025", months: 6, yld: null, src: "kharar", note: "Flat; consolidation"},
+    {m: "New Chandigarh (flats)", c: "CHD_MANALI", price: 8000, from: null, period: "2026 range 6,850-10,650", months: null, yld: null, src: "newchd", note: "Range only"},
+    {m: "Sonipat", c: "NH44_DEL_ASR", price: 4750, from: null, period: "2026 range 3,500-6,000", months: null, yld: null, src: "sonipat", note: "RRTS + KMP + UER-II catalysts"},
+    {m: "Kundli (land, Rs/sq yd)", c: "NH44_DEL_ASR", price: 61216, from: 21109, period: "2020 - 2025 (+190%)", months: 60, yld: null, src: "kundliLand", note: "Land; unit is per sq yd"},
+    {m: "Panipat North", c: "NH44_DEL_ASR", price: 6500, from: null, period: "2026", months: null, yld: 3.9, src: "panipat", note: "Namo Bharat corridor approved", src2: "rrts"},
+    {m: "Ludhiana", c: "NH44_DEL_ASR", price: 7150, from: 6300, period: "Jun 2025 - Mar 2026", months: 9, yld: 2.85, src: "ludhiana", note: ""},
+    {m: "Jalandhar", c: "NH44_DEL_ASR", price: 3943, from: 4075, period: "2025 YoY", months: 12, yld: null, src: "jalandhar", note: "Falling"},
+    {m: "Amritsar", c: "NH44_DEL_ASR", price: 5859, from: 6340, period: "YoY to 2026", months: 12, yld: null, src: "amritsar", note: "Falling"},
+    {m: "Dwarka Expressway", c: "NH48_GGN_REW", price: 14180, from: 6032, period: "2021 - H1 2026", months: 66, yld: null, src: "dwarka", note: "Strongest measured gain"},
+    {m: "Southern Peripheral Road", c: "NH48_GGN_REW", price: 16249, from: 13724, period: "YoY 2026 (+18.4%)", months: 12, yld: null, src: "spr", note: ""}
+  ],
+
+  legal: [
+    ["Himachal Pradesh", "Non-agriculturists, including all outsiders, need state permission under Section 118 to buy land. HIMUDA flats and land are exempt.", "sec118", "himuda"],
+    ["Expressways (DAK, Trans-Haryana)", "Access-controlled: no private access from roadside land. Food outlets only at NHAI wayside-amenity sites, leased by tender for up to 30 years.", "wsaPolicy", "wsaTender"]
+  ]
+};
+</script>
+<script>// Investment analysis panel: per-corridor month-by-month model, property, risks, ranking, report export.
+(function(){
+const I = window.INVEST; if (!I) return;
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DAYS = [31,28,31,30,31,30,31,31,30,31,30,31];
+const EVL = {S:"Sourced", A:"Assumption", J:"Judgment"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = v => (v/1e5);                       // rupees -> lakh
+const fL = (v,d=1) => (v==null||!isFinite(v)) ? "–" : L(v).toLocaleString("en-IN",{maximumFractionDigits:d,minimumFractionDigits:d});
+const fN = (v,d=0) => (v==null||!isFinite(v)) ? "–" : Number(v).toLocaleString("en-IN",{maximumFractionDigits:d,minimumFractionDigits:d});
+const src = id => { const s = I.SRC[id]; return s ? `<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>` : ""; };
+const badge = ev => `<span class="ev ev-${ev}" title="${EVL[ev]}">${EVL[ev]}</span>`;
+const byId = Object.fromEntries(I.corridors.map(c => [c.id, c]));
+
+// ---------- model inputs (defaults are assumptions; AADT/diversion/season come from the corridor)
+// Defaults describe one mid-size highway eatery (~80-120 seats). All are assumptions.
+const BASE = { stop:5, occ:3, cap:10, ticket:350, food:38, otherVar:20, staff:400000, rent:200000, otherFixed:100000, capex:100, closure:1 };
+const INPUTS = [
+  ["aadt","Vehicles per day (AADT)",1,"Average daily vehicles past the site, both directions"],
+  ["diversion","Traffic lost to new roads (%)",1,"Haircut for long-distance traffic moving to a new expressway"],
+  ["stop","Vehicles that stop for food (%)",0.1,"Share of passing vehicles that stop at any eatery on this stretch"],
+  ["occ","People per stopping vehicle",0.1,"Cars ~3, buses higher, trucks ~1.5"],
+  ["cap","Your share of stoppers (%)",1,"Share of stopping traffic your outlet wins against nearby outlets"],
+  ["ticket","Average spend per person (₹)",10,"Murthal's largest dhaba was reported at about ₹300"],
+  ["food","Food cost (% of revenue)",1,"Ingredients and packaging"],
+  ["otherVar","Other variable costs (% of revenue)",1,"Power, gas, card fees, aggregator commission"],
+  ["staff","Staff cost (₹ per month)",10000,"Fixed"],
+  ["rent","Rent or lease (₹ per month)",10000,"Fixed; NHAI wayside sites are bid on rental"],
+  ["otherFixed","Other fixed costs (₹ per month)",10000,"Maintenance, insurance, admin"],
+  ["capex","Capital cost (₹ lakh)",1,"Build-out, kitchen, parking, deposits"],
+  ["closure","Months lost per year to closures",0.5,"Blockades, monsoon, roadworks: revenue lost, fixed costs still paid"]
+];
+const st = { cid: I.corridors[0].id, inputs: {}, weights: {demand:30, durability:25, seasonStable:15, legalEase:15, entryCost:15}, hold: 5 };
+function defaultsFor(c){ return {...BASE, aadt:c.aadt.v, diversion:c.diversion.v, cap:(c.cap||{}).v ?? BASE.cap, season:c.season}; }
+function load(){ try { const s = JSON.parse(localStorage.getItem("invest_v1")||"{}"); if (s.inputs) st.inputs = s.inputs; if (s.weights) st.weights = s.weights; } catch(e){} }
+function save(){ try { localStorage.setItem("invest_v1", JSON.stringify({inputs:st.inputs, weights:st.weights})); } catch(e){} }
+function inputsFor(cid){ const c = byId[cid]; return {...defaultsFor(c), ...(st.inputs[cid]||{})}; }
+
+// ---------- the model
+function model(cid, over){
+  const p = {...inputsFor(cid), ...(over||{})};
+  const idx = I.seasonality[p.season].idx;
+  const base = p.aadt * (1 - p.diversion/100) * (p.stop/100) * p.occ * (p.cap/100);
+  const fixed = p.staff + p.rent + p.otherFixed, vpct = (p.food + p.otherVar)/100;
+  let cum = -p.capex*1e5, rows = [], tot = {rev:0, varc:0, fixed:0, ebitda:0};
+  MONTHS.forEach((m,i) => {
+    const covers = base * idx[i], rev = covers * p.ticket * DAYS[i], varc = rev * vpct, e = rev - varc - fixed;
+    cum += e; rows.push({m, idx:idx[i], covers, rev, varc, fixed, ebitda:e, cum});
+    tot.rev += rev; tot.varc += varc; tot.fixed += fixed; tot.ebitda += e;
+  });
+  const avgContribution = (tot.rev - tot.varc)/12;
+  const reserve = p.closure * avgContribution;
+  const ebitdaAdj = tot.ebitda - reserve;
+  const breakeven = fixed / (30.4 * p.ticket * (1 - vpct));
+  return {p, rows, tot, base, reserve, ebitdaAdj, margin: ebitdaAdj/tot.rev, payback: ebitdaAdj>0 ? p.capex*1e5/ebitdaAdj : Infinity,
+          breakeven, roce: ebitdaAdj/(p.capex*1e5), worst: rows.reduce((a,r)=> r.ebitda<a.ebitda ? r : a, rows[0])};
+}
+function score(c){ const w = st.weights, tw = Object.values(w).reduce((a,b)=>a+b,0)||1;
+  return Object.keys(w).reduce((s,k)=> s + (c.scores[k]||0)*w[k], 0)/tw; }
+function cagr(p){ if (!p.from || !p.months) return null; return (Math.pow(p.price/p.from, 12/p.months) - 1)*100; }
+
+// ---------- rendering
+const root = document.getElementById("invest");
+function render(){
+  const c = byId[st.cid], M = model(st.cid), p = M.p;
+  const live = window.__liveCorridor ? window.__liveCorridor(st.cid) : null;
+  root.innerHTML = `
+  <div class="inv-head">
+    <label>Highway <select id="invC">${I.corridors.map(x=>`<option value="${x.id}" ${x.id===st.cid?"selected":""}>${esc(x.name)}${x.onMap?"":" (not on map yet)"}</option>`).join("")}</select></label>
+    <button id="invReport">Open full report (print / save PDF)</button>
+    <button id="invHtml">Download report (.html)</button>
+    <button id="invCsv">Download monthly model (.csv)</button>
+    <button id="invRankCsv">Download all-highway ranking (.csv)</button>
+    <button id="invReset">Reset this highway to defaults</button>
+  </div>
+  <p class="note">Every figure is labelled ${badge("S")} published source (linked), ${badge("A")} planning default you should replace with site data, or ${badge("J")} a score you can change. Data as of ${I.asOf}. This is a decision tool, not investment advice.</p>
+
+  <div class="inv-grid">
+    <section class="card">
+      <h2>${esc(c.name)}</h2>
+      <p class="note">States: ${esc(c.states)} · demand pattern: ${esc(I.seasonality[p.season].label)}</p>
+      ${live ? `<p class="live-pill">Live now (Google): end-to-end travel time ${live.tti.toFixed(2)}× no-traffic, ${Math.round(live.delay)} min delay, fetched ${live.at}</p>` : `<p class="note">Live congestion: load the Google map and click "Fetch live travel times" above.</p>`}
+      <h3>What the evidence says</h3>
+      ${c.facts.length ? `<ul class="facts">${c.facts.map(f=>`<li>${badge(f[0])} ${esc(f[1])} <span class="srcl">${src(f[2])}</span></li>`).join("")}</ul>` : `<p class="note">No published demand figures found for this highway. Treat every number below as an assumption until you count traffic on site.</p>`}
+      <h3>Risks</h3>
+      ${c.risks.length ? `<table><thead><tr><th>Level</th><th>Risk</th><th>Source</th></tr></thead><tbody>${c.risks.map(r=>`<tr><td><span class="lvl lvl-${r[0]}">${r[0]}</span></td><td>${esc(r[1])}</td><td class="srcl">${src(r[2])}</td></tr>`).join("")}</tbody></table>` : `<p class="note">No corridor-specific risks found in sources.</p>`}
+      <h3>Eatery read</h3><p>${esc(c.eatery)}</p>
+    </section>
+
+    <section class="card">
+      <h2>Eatery model inputs</h2>
+      <p class="note">Change any value; everything recalculates. Your changes are saved in this browser.</p>
+      <div class="inv-form">
+        ${INPUTS.map(([k,lab,step,help]) => {
+          const isCor = k==="aadt"||k==="diversion"; const ev = k==="aadt" ? c.aadt.ev : "A";
+          const note = k==="aadt" ? c.aadt.note : k==="diversion" ? c.diversion.note : k==="cap" && c.cap ? c.cap.note : help;
+          return `<label title="${esc(help)}"><span>${esc(lab)} ${badge(isCor&&ev==="S"&&(st.inputs[st.cid]||{})[k]==null ? "S":"A")}</span>
+            <input type="number" step="${step}" data-k="${k}" value="${p[k]}"><small>${esc(note||"")}${k==="aadt"&&c.aadt.src?" · "+src(c.aadt.src):""}</small></label>`; }).join("")}
+        <label><span>Demand pattern ${badge("A")}</span><select data-k="season">${Object.entries(I.seasonality).map(([k,s])=>`<option value="${k}" ${k===p.season?"selected":""}>${esc(s.label)}</option>`).join("")}</select><small>Monthly index, mean 1.00</small></label>
+      </div>
+    </section>
+  </div>
+
+  <section class="card">
+    <h2>Result: ${M.ebitdaAdj>0 ? `₹${fL(M.ebitdaAdj)} lakh a year after closures; pays back in ${M.payback.toFixed(1)} years` : `loss-making at these inputs (₹${fL(M.ebitdaAdj)} lakh a year)`}</h2>
+    <div class="kpis">
+      ${kpi("Guests per day (average)", fN(M.base))}
+      ${kpi("Revenue per year", "₹"+fL(M.tot.rev)+" L")}
+      ${kpi("Profit before closures (EBITDA)", "₹"+fL(M.tot.ebitda)+" L")}
+      ${kpi("Closure reserve", "−₹"+fL(M.reserve)+" L")}
+      ${kpi("Profit after closures", "₹"+fL(M.ebitdaAdj)+" L")}
+      ${kpi("Margin after closures", (M.margin*100).toFixed(1)+"%")}
+      ${kpi("Payback on capital", isFinite(M.payback)? M.payback.toFixed(1)+" yrs":"never")}
+      ${kpi("Break-even guests per day", fN(M.breakeven))}
+      ${kpi("Weakest month", M.worst.m+" (₹"+fL(M.worst.ebitda)+" L)")}
+    </div>
+    <div id="invChart"></div>
+    <div class="scroll"><table class="num"><thead><tr><th>Month</th><th>Demand index</th><th>Guests/day</th><th>Revenue (₹ L)</th><th>Variable cost (₹ L)</th><th>Fixed cost (₹ L)</th><th>EBITDA (₹ L)</th><th>Cumulative cash vs capital (₹ L)</th></tr></thead><tbody>
+      ${M.rows.map(r=>`<tr><td>${r.m}</td><td>${r.idx.toFixed(2)}</td><td>${fN(r.covers)}</td><td>${fL(r.rev)}</td><td>${fL(r.varc)}</td><td>${fL(r.fixed)}</td><td class="${r.ebitda<0?"neg":""}">${fL(r.ebitda)}</td><td class="${r.cum<0?"neg":""}">${fL(r.cum)}</td></tr>`).join("")}
+      <tr class="tot"><td>Year</td><td></td><td>${fN(M.base)}</td><td>${fL(M.tot.rev)}</td><td>${fL(M.tot.varc)}</td><td>${fL(M.tot.fixed)}</td><td>${fL(M.tot.ebitda)}</td><td></td></tr>
+    </tbody></table></div>
+    <p class="note">Guests/day = vehicles × (1 − diversion) × stop rate × people per vehicle × your share × month index. EBITDA = revenue − variable costs − fixed costs. Closure reserve = months lost × average monthly contribution. Payback = capital ÷ profit after closures.</p>
+    ${I.seasonality[p.season].anchors.length ? `<p class="note">Demand index anchors: ${I.seasonality[p.season].anchors.map(a=>`${a[0]}: ${esc(a[1])} (${src(a[2])})`).join("; ")}.</p>`:""}
+    <h3>Sensitivity: profit after closures (₹ lakh a year)</h3>
+    ${sensitivity()}
+  </section>
+
+  <section class="card">
+    <h2>Property near this highway</h2>
+    <p class="note">Asking prices from listing portals and research firms. Annual rate = the sourced change scaled to 12 months. Projection uses that rate for the holding period you set, which assumes the past rate continues.</p>
+    <label class="hold">Holding period (years) <input type="number" id="invHold" min="1" max="20" value="${st.hold}"></label>
+    ${propTable(I.property.filter(x=>x.c===st.cid))}
+    <details><summary>All micro-markets in the three states</summary>${propTable(I.property)}</details>
+    <h3>Legal constraints</h3>
+    <ul class="facts">${I.legal.map(l=>`<li><b>${esc(l[0])}:</b> ${esc(l[1])} <span class="srcl">${src(l[2])}${l[3]?" · "+src(l[3]):""}</span></li>`).join("")}</ul>
+  </section>
+
+  <section class="card">
+    <h2>Compare all highways</h2>
+    <p class="note">Scores are ${badge("J")} judgments from 1 (weak) to 5 (strong); change the weights to match your priorities. The model columns run each highway's own traffic, competition and demand pattern through your current spend and cost inputs.</p>
+    <div class="weights">${Object.entries(st.weights).map(([k,v])=>`<label>${esc({demand:"Demand",durability:"Durability (no bypass/blockade)",seasonStable:"Stable through the year",legalEase:"Legal ease",entryCost:"Low entry cost"}[k])} weight <input type="number" min="0" max="100" data-w="${k}" value="${v}"></label>`).join("")}</div>
+    ${rankTable()}
+  </section>`;
+  chart(M);
+  wire();
+}
+const kpi = (k,v) => `<div class="kpi"><div class="kv">${v}</div><div class="kk">${esc(k)}</div></div>`;
+function sensitivity(){
+  const cs = [0.5, 0.75, 1, 1.5, 2], ts = [250, 300, 350, 450, 550];
+  const base = inputsFor(st.cid);
+  return `<div class="scroll"><table class="num"><thead><tr><th>Your share of stoppers →<br>Spend per person ↓</th>${cs.map(x=>`<th>${(base.cap*x).toFixed(0)}%</th>`).join("")}</tr></thead><tbody>
+  ${ts.map(t=>`<tr><td>₹${t}</td>${cs.map(x=>{ const m = model(st.cid,{cap:base.cap*x, ticket:t}); return `<td class="${m.ebitdaAdj<0?"neg":""}">${fL(m.ebitdaAdj)}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function propTable(list){
+  if (!list.length) return `<p class="note">No sourced property data for this highway yet.</p>`;
+  return `<div class="scroll"><table class="num"><thead><tr><th>Micro-market</th><th>Latest price</th><th>Sourced change</th><th>Period</th><th>Annual rate</th><th>Projected in ${st.hold} yrs ${badge("A")}</th><th>Rental yield</th><th>Note</th><th>Source</th></tr></thead><tbody>
+  ${list.map(x=>{ const g = cagr(x); const longEnough = x.months && x.months >= 24; const proj = (g==null || !longEnough) ? null : x.price*Math.pow(1+g/100, st.hold);
+    const unit = x.m.includes("sq yd") ? "/sq yd" : "/sq ft";
+    return `<tr><td>${esc(x.m)}</td><td>₹${fN(x.price)}${unit}</td><td>${x.from? ((x.price/x.from-1)*100).toFixed(1)+"%":"–"}</td><td>${esc(x.period)}</td><td class="${g<0?"neg":""}">${g==null?"–":g.toFixed(1)+"%"}</td><td>${proj!=null ? "₹"+fN(proj) : (g!=null ? '<span class="note">window under 2 yrs</span>' : "–")}</td><td>${x.yld?x.yld+"%":"–"}</td><td>${esc(x.note)}</td><td class="srcl">${src(x.src)}${x.src2?" · "+src(x.src2):""}</td></tr>`; }).join("")}
+  </tbody></table></div><p class="note">Projections are shown only where the sourced trend covers at least 2 years. Short windows of asking prices swing widely, so their annual rate is shown for reference but not projected.</p>`;
+}
+function rankRows(){
+  const cur = inputsFor(st.cid);
+  return I.corridors.map(c => { const own = inputsFor(c.id); const m = model(c.id, {...cur, aadt: own.aadt, diversion: own.diversion, cap: own.cap, season: own.season});
+    return {c, s: score(c), m}; }).sort((a,b)=> b.s - a.s);
+}
+function rankTable(){
+  return `<div class="scroll"><table class="num"><thead><tr><th>#</th><th>Highway</th><th>Score</th><th>Demand</th><th>Durability</th><th>Stable year</th><th>Legal ease</th><th>Entry cost</th><th>Vehicles/day</th><th>Profit after closures (₹ L/yr)</th><th>Payback (yrs)</th><th>Weakest month</th></tr></thead><tbody>
+  ${rankRows().map((r,i)=>`<tr data-c="${r.c.id}" class="${r.c.id===st.cid?"sel":""}"><td>${i+1}</td><td>${esc(r.c.name)}</td><td><b>${r.s.toFixed(2)}</b></td>${["demand","durability","seasonStable","legalEase","entryCost"].map(k=>`<td>${r.c.scores[k]}</td>`).join("")}<td>${fN(r.m.p.aadt)} ${badge(r.m.p.aadt===r.c.aadt.v?r.c.aadt.ev:"A")}</td><td class="${r.m.ebitdaAdj<0?"neg":""}">${fL(r.m.ebitdaAdj)}</td><td>${isFinite(r.m.payback)?r.m.payback.toFixed(1):"never"}</td><td>${r.m.worst.m}</td></tr>`).join("")}
+  </tbody></table></div>`;
+}
+function chart(M){
+  const W=760,H=260,l=56,r=12,t=28,b=30, vals=M.rows.flatMap(x=>[x.rev,x.ebitda]);
+  const mx=Math.max(...vals,1), mn=Math.min(0,...vals), y=v=> t+(H-t-b)*(mx-v)/(mx-mn), bw=(W-l-r)/12;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Monthly revenue and EBITDA">`;
+  s+=`<text x="${l}" y="16" font-size="12" fill="#52514e">Monthly revenue (grey) and EBITDA (blue, red when negative), ₹ lakh</text>`;
+  [mx, (mx+mn)/2, mn].forEach(v=>{ s+=`<line x1="${l}" x2="${W-r}" y1="${y(v)}" y2="${y(v)}" stroke="#efeee9"/><text x="${l-6}" y="${y(v)+4}" font-size="10" text-anchor="end" fill="#8a8984">${fL(v,0)}</text>`; });
+  s+=`<line x1="${l}" x2="${W-r}" y1="${y(0)}" y2="${y(0)}" stroke="#8a8984"/>`;
+  M.rows.forEach((row,i)=>{ const x0=l+i*bw+bw*0.15, w=bw*0.33;
+    s+=`<rect x="${x0}" y="${y(row.rev)}" width="${w}" height="${y(0)-y(row.rev)}" fill="#c9c8c3" rx="2"><title>${row.m}: revenue ₹${fL(row.rev)} L</title></rect>`;
+    const e=row.ebitda; s+=`<rect x="${x0+w+2}" y="${e>=0?y(e):y(0)}" width="${w}" height="${Math.abs(y(e)-y(0))}" fill="${e>=0?"#2a78d6":"#e34948"}" rx="2"><title>${row.m}: EBITDA ₹${fL(e)} L</title></rect>`;
+    s+=`<text x="${l+i*bw+bw/2}" y="${H-10}" font-size="10" text-anchor="middle" fill="#52514e">${row.m}</text>`; });
+  document.getElementById("invChart").innerHTML = s+"</svg>";
+}
+function wire(){
+  root.querySelector("#invC").onchange = e => { st.cid = e.target.value; render(); };
+  root.querySelectorAll(".inv-form [data-k]").forEach(el => el.onchange = () => {
+    const k = el.dataset.k; const v = k==="season" ? el.value : parseFloat(el.value);
+    if (k!=="season" && !isFinite(v)) return;
+    st.inputs[st.cid] = {...(st.inputs[st.cid]||{}), [k]: v}; save(); render(); });
+  root.querySelector("#invReset").onclick = () => { delete st.inputs[st.cid]; save(); render(); };
+  root.querySelector("#invHold").onchange = e => { st.hold = Math.max(1, Math.min(20, parseInt(e.target.value)||5)); render(); };
+  root.querySelectorAll("[data-w]").forEach(el => el.onchange = () => { st.weights[el.dataset.w] = Math.max(0, parseFloat(el.value)||0); save(); render(); });
+  root.querySelectorAll("tr[data-c]").forEach(tr => tr.onclick = () => { st.cid = tr.dataset.c; render(); root.scrollIntoView({behavior:"smooth"}); });
+  root.querySelector("#invReport").onclick = openReport;
+  root.querySelector("#invHtml").onclick = () => download(`highway-report-${st.cid}.html`, reportHtml(), "text/html");
+  root.querySelector("#invCsv").onclick = () => download(`monthly-model-${st.cid}.csv`, monthlyCsv(), "text/csv");
+  root.querySelector("#invRankCsv").onclick = () => download(`highway-ranking.csv`, rankCsv(), "text/csv");
+}
+function download(name, text, type){
+  try { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();}, 500); }
+  catch(e){ alert("Download blocked by this viewer: " + e.message); }
+}
+const csvq = v => `"${String(v).replace(/"/g,'""')}"`;
+function monthlyCsv(){
+  const M = model(st.cid), p = M.p;
+  const head = ["Highway", byId[st.cid].name]; const inp = Object.entries(p).map(([k,v])=>[k,v]);
+  const rows = [["Month","Demand index","Guests per day","Revenue INR","Variable cost INR","Fixed cost INR","EBITDA INR","Cumulative cash vs capital INR"],
+    ...M.rows.map(r=>[r.m,r.idx,Math.round(r.covers),Math.round(r.rev),Math.round(r.varc),Math.round(r.fixed),Math.round(r.ebitda),Math.round(r.cum)]),
+    ["Year","",Math.round(M.base),Math.round(M.tot.rev),Math.round(M.tot.varc),Math.round(M.tot.fixed),Math.round(M.tot.ebitda),""],
+    ["Closure reserve INR",Math.round(M.reserve)],["EBITDA after closures INR",Math.round(M.ebitdaAdj)],["Payback years",isFinite(M.payback)?M.payback.toFixed(2):"never"],["Break-even guests per day",Math.round(M.breakeven)]];
+  return [head, ["As of", I.asOf], [], ["Input","Value"], ...inp, [], ...rows].map(r=>r.map(csvq).join(",")).join("\n");
+}
+function rankCsv(){
+  const rows = [["Rank","Highway","Score","Demand","Durability","Stable year","Legal ease","Entry cost","Vehicles per day","AADT evidence","EBITDA after closures INR","Payback years","Weakest month"],
+    ...rankRows().map((r,i)=>[i+1,r.c.name,r.s.toFixed(2),r.c.scores.demand,r.c.scores.durability,r.c.scores.seasonStable,r.c.scores.legalEase,r.c.scores.entryCost,r.m.p.aadt,EVL[r.c.aadt.ev],Math.round(r.m.ebitdaAdj),isFinite(r.m.payback)?r.m.payback.toFixed(2):"never",r.m.worst.m])];
+  return rows.map(r=>r.map(csvq).join(",")).join("\n");
+}
+function reportHtml(){
+  const c = byId[st.cid], M = model(st.cid);
+  const used = new Set([...c.facts.map(f=>f[2]), ...c.risks.map(r=>r[2]), c.aadt.src, ...I.property.filter(x=>x.c===st.cid).flatMap(x=>[x.src,x.src2]), ...I.legal.flatMap(l=>[l[2],l[3]]), ...I.seasonality[M.p.season].anchors.map(a=>a[2])].filter(Boolean));
+  const body = root.cloneNode(true);
+  body.querySelectorAll(".inv-head, .inv-form input, .inv-form select, details summary, .weights, .hold").forEach(n => n.remove());
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Highway investment report: ${esc(c.name)}</title>
+  <style>body{font:13px/1.45 system-ui,sans-serif;color:#0b0b0b;max-width:1000px;margin:24px auto;padding:0 16px}h1{font-size:20px}h2{font-size:15px;margin:18px 0 4px}h3{font-size:13px}table{border-collapse:collapse;width:100%;font-size:12px;margin:6px 0}th,td{border-bottom:1px solid #e6e5e0;padding:4px 6px;text-align:left}.num td{text-align:right}.num td:first-child{text-align:left}.neg{color:#c62828}.note,small{color:#52514e;font-size:11.5px}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.kpi{border:1px solid #e6e5e0;border-radius:6px;padding:6px}.kv{font-weight:700;font-size:15px}.kk{font-size:11px;color:#52514e}.ev{font-size:10px;border:1px solid #bbb;border-radius:4px;padding:0 4px;margin-right:4px}.card{page-break-inside:avoid}a{color:#1c5cab}.inv-form label{display:block;margin:2px 0}.inv-form label span{font-weight:600}</style></head><body>
+  <h1>Highway investment report: ${esc(c.name)}</h1>
+  <p class="note">Generated ${new Date().toLocaleString("en-IN")} from the highway heat-map tool · data as of ${I.asOf}. Figures are labelled Sourced (linked), Assumption (planning default) or Judgment. Not investment advice.</p>
+  <h2>Inputs used</h2><table>${Object.entries(M.p).map(([k,v])=>`<tr><td>${esc((INPUTS.find(x=>x[0]===k)||[k,k])[1])}</td><td>${esc(v)}</td></tr>`).join("")}</table>
+  ${body.innerHTML}
+  <h2>Sources</h2><ol>${[...used].map(id=>`<li>${src(id)}</li>`).join("")}</ol></body></html>`;
+}
+function openReport(){
+  const w = window.open("", "_blank");
+  if (!w){ download(`highway-report-${st.cid}.html`, reportHtml(), "text/html"); return; }
+  w.document.open(); w.document.write(reportHtml() + `<script>setTimeout(()=>window.print(),400)<\/script>`); w.document.close();
+}
+window.__investRender = render;
+load(); render();
+})();
 </script>
 </body>
 </html>
