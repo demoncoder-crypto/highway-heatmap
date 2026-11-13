@@ -1,0 +1,145 @@
+state,nh_no,plaza_code,plaza_name,concessionaire_name,concessionaire_type,city,section,lat,lon,car_single_journey_inr,car_monthly_pass_inr,lcv_single_inr,bus_truck_single_inr,three_axle_single_inr,four_six_axle_single_inr,oversized_single_inr,source,retrieved
+Punjab,NH 09,350045,Abul Khurana Toll Plaza,Mahendra Godara,PF,Malout,Malout Mandi Dabwali Section,30.12073068,74.55357538,35,1180,55,120,130,190,230,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,152,14001,Dappar,GMR,Conc.,Sahibzada Ajit Singh Nagar,Ambala Zirakpur,30.527449,76.813037,50,1490,85,175,280,280,280,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 344A,314028,Bachhuan,NHAI,PF,Balachaur,Ropar To Phagwara,31.0144456,76.3893302,70,2285,110,230,255,365,445,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,7 (Old 64),314015,Badbar,NHAI,PF,Sangrur,Patiala Sangrur Barnala Bathinda,30.24780444,75.64051676,110,3665,180,370,405,585,710,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,52 (Old 65),312002,Badopatti,IRB,Conc.,Bado patti,Kaithal To Haryana Rajasthan Border,29.29924857,75.81985716,120,4055,195,410,450,645,785,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,7,314038,Balluana,Mahender Godara,PF,Bhatinda,Bathinda-Malout section of NH-07),30.22752818,74.76368384,60,2020,100,205,225,320,390,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 709E,312066,Bamla,NHAI,PF,Bhiwani,24.259,28.80476538,76.22314423,50,1625,80,165,180,260,315,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 709A,313004,Bass,NHAI,PF.,Bass,Bhiwanimundhaljind (Ch. 6.875 To Ch. 68.857),29.12730711,76.20958449,60,1945,95,195,215,310,375,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,344A,314027,Behram,NHAI,PF,Behram,Ropar Phagwara,31.2043049,75.87692405,110,3640,175,370,405,580,705,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,1,312022,Bhagan,NHAI,PF,Sonipat,Delhi Haryana Kundli Border To Panipat,29.07166678,77.0607059,120,3975,195,405,440,635,770,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 5 (Old 95),314025,Bhago Majra,NHAI,PF,SAS NAGAR,Kharar To Ludhiana,30.760763,76.607911,115,3795,185,385,420,605,735,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 703 B,314041,Bhagupur Toll Plaza,Harike,PF,Jammu,57.8,31.24998805,74.82766103,40,1370,65,140,150,220,265,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 9,312017,Bhavdeen,NHAI,PF,Sirsa,Hisar Dabwali Pkg Ii,29.53254754,75.20320022,80,2595,125,265,290,415,505,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,334B,313005,Bisalwas,NHAI,PF,Jhajjar,97.864,28.46922553,75.89043474,40,1345,65,135,150,215,260,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,205,157001,Kurali (Behrampur),BSC-C&C Kurali Toll Plaza,Conc.,Rupnagar,Kurali - Kiratpur,30.90810532,76.54544529,60,1825,105,215,340,340,340,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,Linking NH 95 with NH 1,314033,Chahar,NHAI,PF,Ludhiana,17.041 Km,30.98837403,75.79117994,40,1380,65,140,155,220,270,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,703,314014,Chak Bamniya,NHAI,PF,Jalandhar,At Km. 50.835 From Km 12.000 To 77.200 On Lambrashahkotmogabar0La Section of NH71 (New NH703) In The State of Punjab,31.01747349,75.29989254,125,4225,205,430,470,670,820,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,5,155001,Chandimandir,JP Infra,Conc.,Panchkula,Zirakpur Parwanoo,30.738834,76.897977,40,1175,70,135,220,220,220,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,52 (Old 65),312003,Chaudhriwas,IRB,Conc.,Chaudhariw as,Kaithal To Haryana Rajasthan Border,28.99808169,75.60434694,75,2435,120,245,270,390,470,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,05 (Old 95),314029,Gurhe (Chowkiman ),Ludhiana - Talwandi Toll Road,Conc.,Ludhiana,78 Km,30.82487309,75.58988213,70,2310,110,235,255,370,450,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH334B,312026,Chhara,NHAI,PF,Jhajjar,Roh0Hassangarh To Jhajjar Section From Km 44.80 To Km 80.250,28.71329556,76.72459052,75,2435,120,245,270,390,470,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,1,314024,Chiddan,NHAI,PF,Amritsar,Amritsar - Wagah Border (Km 456.100 - Km 492.030),31.61718694,74.69240157,55,1820,90,185,200,290,355,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,44,159001,Chollang,NHAI,Conc.,Hoshiarpur,Jalandhar - Pathankot ( Km 4.23 To Km 70.00),31.6249912,75.64027663,110,3670,180,375,405,585,710,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,536084,Chhotian,M/s RAJINDER INFRA.PVT.L TD,PF,"Chottian, District Sangrur",Km 244.540 To Km 287.548,29.82949485,75.78572935,50,1745,85,175,195,280,340,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,71A,104002,Dahar,Sadbhav,Conc.,Panipat,Rohtak - Panipat,29.31921343,76.9185274,70,2280,110,230,250,365,440,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH05,314042,Darapur Toll Plaza,NHAI,PF,Moga,Ludhiana To Talwandi,30.84009498,74.97728758,60,1990,95,200,220,315,385,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 7,314021,Azizpur,NHAI,PF,Patiala,0.00 Km To 50.00 Km,30.59301983,76.75930583,45,1520,75,155,170,240,295,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 7,314020,Dhareri jattan,NHAI,PF,Zirakpur,0.00 Km To 50 Km,30.39152445,76.49900366,50,1590,75,160,175,255,310,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,71,103002,Dighal,Kurukshetra Expressway s,Conc.,Jhajjar,Rohtak - Bawal,28.77740385,76.62138257,60,1940,95,195,310,310,375,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,3,317002,Dolhu Nallah (Raison),NHAI,PF,Mandi,Kullu Ma0Li,32.07288053,77.1294227,80,2690,130,275,300,430,520,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH95 (New NH05),314037,Ferozeshah,NHAI,PF,Ferozepur,Talwandi Bhai To Ferozepur,30.86950635,74.77316175,35,1245,60,125,140,200,240,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,na,312050,Gadpuri,DA Toll Road Pvt Ltd,DBFOT,Palwal,Km. 20.500 To Km 179.5,28.24915979,77.29085366,125,4150,195,400,615,615,780,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,44(Old NH 01),154002,Ghaggar,Soma Isolux NH One Tollway,PF,Ambala,Panipat Jalandhar,30.40392682,76.7369142,125,4105,200,415,455,655,795,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312047,Ghamroj (Sohna),H G INFRA,Conc.,Gurugram,Gurgaon-Sohna Section,28.3336041,77.0673886,130,4370,210,445,485,695,845,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,44(Old NH 01),154001,Gharaunda (Karnal),Soma Isolux NH One Tollway,PF,Karnal,Panipat Jalandhar,29.58305496,76.97876816,195,6425,310,650,710,1025,1245,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 5 (Old 95),314026,Ghulal,NHAI,PF,LUDHIANA,Kharar To Ludhiana,30.84718465,76.13274946,110,3660,175,370,405,585,710,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,158001,Harsa Mansar,NHAI,Conc.,Hoshiarpur,Jalandhar - Pathankot - Lakhanpur,32.06178989,75.61429654,130,4390,215,445,485,700,850,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 7 (OLD 73),312032,Jaloli,NHAI,PF,Jaloli,Yamu00Gar To Panchkula,30.58570028,76.94522194,115,3825,185,390,425,610,740,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,71,103001,Gangaycha Jatt,Kurukshetra Expressway s,Conc.,Rewari,Rohtak - Bawal,28.2752073,76.6134179,100,3380,160,325,495,495,630,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,1,41001,Dhilwan,IVRCL,Conc.,Kapurthala,Jalandhar Amritsar,31.49929854,75.32314078,70,2320,110,235,255,370,450,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,Old NH01 (New NH03),41002,Nijjarpura,IVRCL,Conc.,Amritsar,69 Km,31.57767001,74.99723848,65,2140,105,220,235,340,415,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 334B,312048,Jharothi,Jai Singh and Company,PF,Sonipat,Upharya0 Border To Roha0 Pkg1,28.92228964,76.95296209,80,2730,130,275,300,435,530,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,354 E,314036,Kala Tibba,NHAI,PF.,Abohar,2 Lane From Km 0.00 To Km 50.885,30.10491678,74.26080263,50,1680,80,170,185,270,325,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,7 (Old 64),314017,Kalajhar,NHAI,PF,Channo,Patiala Sangrur Barnala Bathinda,30.26585417,76.14834108,110,3745,180,380,415,595,725,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,703 B,314040,Karahewala,Rajram Godara,PF,Moga,Moga To Makhu,31.05309883,75.04988952,35,1175,55,120,130,185,230,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,19,312049,Karman,DA Toll Road Pvt Ltd,DBFOT,Palwal,Delhi To Agra,27.85537976,77.40259368,95,3200,155,325,510,510,620,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,Old No.71 (New NH 52352),312031,Khatkar,NHAI,PF,Narwana,Punjab Border To Jind Section From Km. 239.695 To Km. 307.000,29.39464864,76.25252763,125,4135,200,420,460,660,800,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH10,312018,Khuian Malkan,NHAI,PF,Sirsa,43.925 Km,29.88078564,74.79383659,65,2225,110,225,245,355,430,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 148B,312025,Kitlana,Unique BuildMart Pvt Ltd.,PF,Bhiwani,Raj.Hr. Border To Bhiwani To Hansi To Punjab Border,28.69293207,76.15863583,50,1585,75,160,175,250,305,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,314022,Kot Karor,NHAI,PF,Talwandi,At Km. 205.00 of Harike Zira Faridkot From Km. 166.925 To Km. 221.380 On NH15 (New NH54) In The State of Punjab.,30.82663033,74.91643447,50,1590,75,160,175,255,310,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,44(Old NH 01),39001,Panipat Elevated,L&T,Conc.,Panipat,Panipat Elevated Highway (Km 86.000 To Km 96.000),29.43341665,76.97004106,40,0,60,125,125,125,125,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,44(Old NH 01),154003,Ladhowal,Soma Isolux NH One Tollway,PF,Ludhiana,Panipat - Jalandhar,30.98896339,75.79017292,230,7620,370,775,845,1215,1475,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,30001,Ladpalwan,IRB,Conc.,Pathankot,Pathankot-Amritsar,32.19804182,75.53385912,140,4625,215,435,660,660,855,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,9 (Old 10),312023,Landhari,NHAI,PF,Hisar,Hisar To Dabwali,29.29237572,75.64816819,100,3225,160,330,360,520,630,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 07(Old NH 64),314016,Lehrabega Toll Plaza,NHAI,PF,Bhatinda,Km 10.00 To Km 41.405,30.23312852,75.10248301,75,2575,125,260,285,410,500,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,352A,314035,Ludana,NHAI,PF,Jind,50.505,29.24124688,76.5180325,55,1915,95,195,210,305,370,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,10,242000,Madina Korsan,Rohtak Hissar Tollway,Conc.,Rohtak,Rohtak Hisar (Km 87.00 To Km 170.00),28.93757025,76.39991111,75,2525,120,255,280,400,490,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,71A,104001,Makrauli Kalan,Sadbhav,Conc.,Rohtak,Rohtak - Panipat,28.944307,76.609736,85,2915,140,295,325,465,565,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,703,314032,Mallian Toll Plaza,NHAI,PF.,Barnala,Tallewalbarnala Section of NH 703,30.40247177,75.44181076,115,3900,190,395,430,620,755,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,354,314039,Manan,NHAI,PF,Amritsar,48.823 Km.,31.5164536,74.80044806,50,1750,85,180,195,280,340,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH73,312024,Milk Majra,NHAI,PF,Shahjadpur,Yamunanagar Panchkula,30.21129432,77.19444676,100,3380,165,345,375,540,655,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,334B,313003,Morwala,NHAI,PF,Charkhi Dadri,97.864,28.64105181,76.38113446,55,1815,90,185,200,290,350,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 154 and NH 205,340067,Moura Toll Plaza,Ceigall,PF,Kiratpur,Kiratpurnerchonk,31.21165061,76.64053544,160,5370,260,545,595,855,1040,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,52 (Old 65),312001,Narwana,IRB,Conc.,Dharamgar h,Kaithal To Haryana Rajasthan Border,29.57847352,76.08856532,90,3000,145,305,330,480,580,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,71(New NH 52),314023,Paind,NHAI,PF,Partran,Km 181.805 To Km 238.695,29.88873564,76.10143593,95,3100,150,315,345,495,600,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,709A,312028,Peont,NHAI,PF,Karnal,2Lane With Paved Shoulder For Jindkar0L Section of NH709A,29.62343107,76.78477689,80,2725,130,275,300,435,530,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,10,239400,Rohad,West Haryana Highways Project,Conc.,Rohtak,Delhi-Haryan -Rohtak- Hisar,28.754563,76.795216,135,4515,220,460,500,720,875,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,152(old NH65),312029,Saini Majra,NHAI,PF,Saini Majra,Ambala To Pehowa,30.196922,76.70574,105,3440,165,350,380,550,665,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,5,317003,Sanwara,NHAI,PF,Sanwara,Parwanoo Solan,30.89098601,77.00552474,70,2360,115,240,260,375,455,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,2,62001,Srinagar,Reliance,Conc.,Palwal,Delhi - Agra,28.00439216,77.33199032,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,NH 709AD,312071,Tamsabad,NHAI,PF,Panipat,Panipat To Shamli (Pkg I),29.39066989,77.13562488,75,2535,125,255,280,405,490,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,152(old NH65),312030,Thana,NHAI,PF,Kaithal,Pehowa To Kaithal,29.91011295,76.50666378,90,2965,145,300,330,470,575,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,314018,Usma,NHAI,PF,Amritsar,Km 112.575 To Km 166.925,31.37014196,74.9548438,165,5510,265,560,610,880,1070,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,54,30002,Waryam Nangal,IRB,Conc.,Amritsar,Pathankot-Amritsar,31.73265585,75.0424633,120,3975,185,380,580,580,740,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,NH 54 (Old NH 15),314019,Zidda,NHAI,PF,Bhatinda,Km 221.380 To Km 287.215,30.38509859,74.98302336,125,4240,205,430,470,675,820,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,NH2 1 (Now 205 and NH 154),350047,Baloh Fee Plaza,M/S Gawar Kiratpur Pvt Ltd,PF,Baloh,Kiratpur Ner Chowk,31.42039336,76.79828377,70,2280,110,230,255,365,440,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,2,570058,Badarpur Elevated,,,,Km. 16.100 To Km. 20.500,28.47472128,77.30541666,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536094,Dabwali Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Mandi Dabwali Bypass (Pb./Hr. Border)-Chautala Road Section,29.9402019,74.7512062,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536097,Abubshehar Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Mandi Dabwali Bypass (Pb./Hr. Border)-Chautala Road Section,29.82470737,74.57539728,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536095,Alika Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Dabwali Bypass,29.9209392,74.7269695,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,,517000,Alooground Manali,Tourism Development Manali,Conc.,Manali,,32.1998437,77.18805878,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312055,Amrawali Khera Toll Plaza,NHAI,PF,Amrawali Khera,Ismailabad-Gangheri,29.36955257,76.47918862,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312038,Asoda,Skylark world,Conc.,Asoda,,28.72508761,76.84676517,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,,517003,Atal Tunnel Toll,SADA,PF,Manali,,32.4399878,77.16455626,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312027,Badarpur Faridabad Toll Plaza,Badarpur Faridabad Tollway ltd,PF,Faridabad,Badarpur Elevated Highways,28.476208,77.305485,35,1044,52,104,104,104,104,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312039,Badli,Skylark world,Conc.,Badli,,28.5717009,76.82314789,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312054,Bahri Toll Plaza,NHAI,PF,Bahri,Ismailabad-Gangheri,29.48630195,76.51219597,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312058,Bainsi Toll Plaza,NHAI,PF,Bainsi,Ismailabad-Gangheri,29.02627657,76.39853697,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312063,Bhalkhi Toll Plaza,NHAI,PF,Bhalkhi,Ismailabad-Gangheri,28.21222651,76.1940781,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312062,Buchawas Toll Plaza,NHAI,PF,Buchawas,Ismailabad-Gangheri,28.30540032,76.223176,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312056,Chabri Toll Plaza,NHAI,PF,Chabri,Ismailabad-Gangheri,29.28098922,76.46990037,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312051,Chandlana Toll Plaza,NHAI,PF,Chandlana,Ismailabad-Gangheri,29.86338557,76.64068047,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536098,Chautala Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Mandi Dabwali Bypass section (source text garbled),29.78728834,74.51753976,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312021,Chhajju Nagar,NHAI,PF,Chhajju Nagar,Eastern Peripheral Expressway (NE-II),28.09940465,77.36398512,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312061,Dadri Toll Plaza,NHAI,PF,Dadri,Ismailabad-Gangheri,28.60611917,76.30497881,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312040,Farukhnagar,Skylark world,Conc.,Farukhnagar,,28.455781,76.856801,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312070,Ghata Samsabad Fee Plaza,NHAI,PF,Nuh,Delhi-Vadodara Expressway (Haryana/Rajasthan) EPC,27.7669771,76.9951228,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312067,Hilalpur Fee Plaza,NHAI,PF,Gurugram,Delhi-Vadodara Expressway (Haryana/Rajasthan) EPC 15.02.2023,28.212915,77.124201,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,,517002,Jagatsukh,Tourism Development Manali,Conc.,Manali,,32.19609728,77.20368599,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312064,Jat Guwana Toll Plaza,NHAI,PF,Jat Guwana,Ismailabad-Gangheri,28.12121748,76.17937179,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536093,Jogewal Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Mandi Dabwali Bypass (Pb./Hr. Border)-Chautala Road Section,29.96220044,74.75152743,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312069,Kalinger Fee Plaza,NHAI,PF,Nuh,Delhi-Vadodara Expressway (Haryana/Rajasthan) EPC,28.02364242,77.11207319,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312068,Khalilpur Fee Plaza,NHAI,PF,Palwal,Delhi-Vadodara Expressway (Haryana/Rajasthan) EPC,28.15763617,77.15287067,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312074,Khalilpur Toll Plaza,PATH India Ltd,BOT,Mewat,,28.15814418,77.1541689,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312059,Kharkhara Toll Plaza,NHAI,PF,Kharkhara,Ismailabad-Gangheri,28.92669241,76.37590916,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312037,Kharkhoda,Skylark world,Conc.,Kharkhoda,,28.858488,76.946385,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312060,Kherari Toll Plaza,NHAI,PF,Kherari,Ismailabad-Gangheri,28.82784209,76.34897716,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312053,Kheri Sharaf Ali Toll Plaza,NHAI,PF,Kheri Sharaf Ali,Ismailabad-Gangheri,29.55317663,76.53557813,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,7001,Kherki Daula Toll Plaza,Millinieum City Expressway,Conc.,Gurgaon,Delhi - Gurgaon,28.395604,76.98176,85,950,125,255,255,255,255,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,,340066,Khuian Sarvar Plaza,R.K. Jain Infra Projects,PF,Fazilka,Malout-Abohar-Sadhuwali section,30.08924081,74.02700856,95,3095,150,315,345,495,600,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312057,Kilazafargarh Toll Plaza,NHAI,PF,Kilazafargarh,Ismailabad-Gangheri,29.098408,76.425469,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312073,Kiranj Toll Plaza,NHAI,PF,Nuh,DND- Faridabad - Sohna / 6 Lane,28.18827681,77.17226531,155,5210,250,575,575,830,1010,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312036,Kundali,Skylark world,Conc.,Kundali,,28.91046333,77.02529541,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312019,Main PlazaVillage Jakhauli,NHAI,PF,Jakhauli,Eastern Peripheral Expressway (NE-II),28.91743075,77.16126896,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312042,Maneshar-7A,Skylark world,Conc.,Manesar,,28.3257533,76.89029929,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312043,Maneshar-7B,Skylark world,Conc.,Manesar,,28.31098775,76.8949172,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312020,Maujpur,NHAI,PF,Maujpur,Eastern Peripheral Expressway (NE-II),28.28177917,77.43821925,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,242001,Mayar Toll Plaza,Rohtak Hissar Tollway,Conc.,Hisar,Rohtak-Hissar,29.10066572,75.88495191,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312052,Mohna Toll Plaza,NHAI,PF,Mohna,Ismailabad-Gangheri,29.77512609,76.60247157,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312045,Nuh,Skylark world,Conc.,Nuh,,28.179226,77.074981,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312065,Pabanawa Toll Plaza,NHAI,PF,Pabanawa,Ismailabad-Gangheri,29.90950529,76.64719421,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312046,Palwal,Skylark world,Conc.,Palwal,,28.10232832,77.30511418,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312041,Patodi,Skylark world,Conc.,Patodi,,28.39148398,76.86815957,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,,314034,Shekhpura Toll Plaza,NHAI,PF.,Talwandi Sabo,Rampura-Maur-Talwandi Manai for the Section,29.9888,75.1378,55,1795,85,180,200,285,350,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536096,Shergarh Toll Plaza,VRC DC Highways Pvt Ltd,PF,Mandi Dabwali,Mandi Dabwali (Pb./Hr. Border)-Chautala Road Section from Proposed Mandi,29.90704105,74.65331979,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312035,Sirohi Bahali Toll Plaza,NHAI,PF,Narnaul,Mor-Narnaul-Pacheri Kalan Km,27.93273904,76.12722786,140,4610,225,470,510,735,895,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,,517001,Sumaropa Location,SADA Development Fee Barrier,Conc.,Kasol,,32.0061,77.2777,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Himachal Pradesh,,340064,Takoli Plaza,NHAI,PF,Takoli (Mandi),End of Pandoh bypass to Takoli and Takoli to Kullu section,31.79901704,77.18889551,110,3675,180,375,405,585,710,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,312044,Tauru,Skylark world,Conc.,Tauru,,28.21955833,76.99717037,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536372,Jhinjholi Toll Plaza,NHAI,PF,Sonipat,NH 344P spur Bawana (Delhi) to Sonipat bypass NH-352A Barwasani (Km 0-29.6) EPC,28.850034,77.018906,70,2255,110,230,250,360,435,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536406,Hassangarh,NHAI,PF,Rohtak,Delhi-Amritsar-Katra Expressway,28.850278,76.825278,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536407,Humanyupur,NHAI,PF,Rohtak,Delhi-Amritsar-Katra Expressway,28.894856,76.798999,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536408,Puthi,NHAI,PF,Sonipat,Delhi-Amritsar-Katra Expressway,29.064444,76.684444,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536409,Issapur Kheri,NHAI,PF,Sonipat,Delhi-Amritsar-Katra Expressway,29.2264618,76.594204,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536410,Jamni,NHAI,PF,Jind,Delhi-Amritsar-Katra Expressway (Ch. 79.090),29.401759,76.489368,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536411,Alewa,NHAI,PF,Jind,Delhi-Amritsar-Katra Expressway (Ch. 87+122),29.460138,76.440484,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536412,Kharak Pandwa,NHAI,PF,Kaithal,Delhi-Amritsar-Katra Expressway,29.692118,76.282837,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536465,JamniNH152D,NHAI,PF,Jind,Ismailabad-Gangheri,29.401759,76.489368,0,0,0,0,0,0,0,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536473,Peelak Toll Plaza,NHAI,PF,Palwal,Eastern Peripheral Expressway (NE-II),28.127789,77.406093,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Punjab,,536521,Arifke Fee Plaza,PIU Ludhiana,PF,Ferozepur,Makhu-Arifke,31.0397,74.7468,30,990,50,100,110,160,190,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536343,Bandhwari Toll Plaza,GF Toll Road Pvt Ltd,Conc,Gurugram,,28.4122315,77.1669265,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536344,Crusher Zone Toll Plaza,GF Toll Road Pvt Ltd,Conc,Faridabad,,28.4051152,77.2296242,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536345,Pakhal Toll Plaza,GF Toll Road Pvt Ltd,Conc,Faridabad,,28.359658,77.215948,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
+Haryana,,536346,Nunehra Toll Plaza,GF Toll Road Pvt Ltd,Conc,Gurugram,,28.24182,77.118246,,,,,,,,Esri India Living Atlas India_Toll FeatureServer layer 0,2026-11-12
