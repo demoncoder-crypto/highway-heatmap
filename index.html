@@ -42,7 +42,7 @@
     <p class="sub">Punjab · Haryana · Himachal Pradesh</p>
 
     <h2>Reading the map</h2>
-    <div class="key"><span class="bar"></span> Road colour: traffic right now (green = moving freely, red = jammed). Google live data, every road.</div>
+    <div class="key"><span class="bar"></span> Road colour: traffic right now (green = moving freely, red = jammed). Google live data. Zoom in to see state and district roads.</div>
     <div class="key"><span class="dot" style="width:22px;height:22px"></span> Circle size: vehicles counted per day at that toll plaza. Bigger = busier.</div>
     <div class="key"><span class="dot" style="width:10px;height:10px;background:#fff"></span> Hollow = toll plaza with no published count.</div>
 
@@ -94,6 +94,7 @@ function focus(p){ if (!map) return; map.panTo({lat:p.lat, lng:p.lon}); map.setZ
 window.__init = () => {
   map = new google.maps.Map(document.getElementById("map"), {center:{lat:30.4, lng:76.3}, zoom:7, mapTypeControl:false, streetViewControl:false,
     styles:[{featureType:"poi",stylers:[{visibility:"off"}]},{featureType:"transit",stylers:[{visibility:"off"}]}]});
+  const b = new google.maps.LatLngBounds(); P.forEach(p => b.extend({lat:p.lat, lng:p.lon})); map.fitBounds(b, 20);
   traffic = new google.maps.TrafficLayer(); traffic.setMap(map);
   info = new google.maps.InfoWindow();
   for (const p of P){
